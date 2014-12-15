@@ -361,7 +361,8 @@
             // 
             // txtPasta
             // 
-            this.txtPasta.Lines = new string[0];
+            this.txtPasta.Lines = new string[] {
+        "C:\\Users\\Michael\\OneDrive\\Documentos\\Classes"};
             this.txtPasta.Location = new System.Drawing.Point(13, 167);
             this.txtPasta.MaxLength = 32767;
             this.txtPasta.Name = "txtPasta";
@@ -370,6 +371,7 @@
             this.txtPasta.SelectedText = "";
             this.txtPasta.Size = new System.Drawing.Size(248, 29);
             this.txtPasta.TabIndex = 17;
+            this.txtPasta.Text = "C:\\Users\\Michael\\OneDrive\\Documentos\\Classes";
             this.txtPasta.UseSelectable = true;
             // 
             // metroButton1
@@ -441,10 +443,10 @@
             // 
             // Principal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1237, 856);
+            this.ClientSize = new System.Drawing.Size(1237, 780);
             this.Controls.Add(this.metroLabel10);
             this.Controls.Add(this.txtHerancaDao);
             this.Controls.Add(this.metroLabel9);
@@ -471,6 +473,7 @@
             this.Controls.Add(this.txtHost);
             this.Name = "Principal";
             this.Text = "Principal";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.tabPrincipal.ResumeLayout(false);
             this.consutaSql.ResumeLayout(false);
             this.classeVO.ResumeLayout(false);

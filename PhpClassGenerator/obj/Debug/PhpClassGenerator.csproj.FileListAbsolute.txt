@@ -9,3 +9,13 @@ c:\users\michael.lopes\documents\visual studio 2012\Projects\PhpClassGenerator\P
 c:\users\michael.lopes\documents\visual studio 2012\Projects\PhpClassGenerator\PhpClassGenerator\bin\Debug\MetroFramework.pdb
 c:\users\michael.lopes\documents\visual studio 2012\Projects\PhpClassGenerator\PhpClassGenerator\obj\Debug\PhpClassGenerator.exe
 c:\users\michael.lopes\documents\visual studio 2012\Projects\PhpClassGenerator\PhpClassGenerator\obj\Debug\PhpClassGenerator.pdb
+D:\Projetos\PhpClassGenerator\PhpClassGenerator\bin\Debug\PhpClassGenerator.exe.config
+D:\Projetos\PhpClassGenerator\PhpClassGenerator\obj\Debug\PhpClassGenerator.exe
+D:\Projetos\PhpClassGenerator\PhpClassGenerator\obj\Debug\PhpClassGenerator.pdb
+D:\Projetos\PhpClassGenerator\PhpClassGenerator\bin\Debug\PhpClassGenerator.exe
+D:\Projetos\PhpClassGenerator\PhpClassGenerator\bin\Debug\PhpClassGenerator.pdb
+D:\Projetos\PhpClassGenerator\PhpClassGenerator\bin\Debug\MetroFramework.pdb
+D:\Projetos\PhpClassGenerator\PhpClassGenerator\obj\Debug\PhpClassGenerator.csprojResolveAssemblyReference.cache
+D:\Projetos\PhpClassGenerator\PhpClassGenerator\obj\Debug\PhpClassGenerator.Principal.resources
+D:\Projetos\PhpClassGenerator\PhpClassGenerator\obj\Debug\PhpClassGenerator.Properties.Resources.resources
+D:\Projetos\PhpClassGenerator\PhpClassGenerator\obj\Debug\PhpClassGenerator.csproj.GenerateResource.Cache
