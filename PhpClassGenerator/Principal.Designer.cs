@@ -90,8 +90,8 @@
             this.tabPrincipal.Controls.Add(this.classeDAO);
             this.tabPrincipal.Location = new System.Drawing.Point(7, 217);
             this.tabPrincipal.Name = "tabPrincipal";
-            this.tabPrincipal.SelectedIndex = 0;
-            this.tabPrincipal.Size = new System.Drawing.Size(1226, 616);
+            this.tabPrincipal.SelectedIndex = 3;
+            this.tabPrincipal.Size = new System.Drawing.Size(1195, 436);
             this.tabPrincipal.TabIndex = 1;
             this.tabPrincipal.UseSelectable = true;
             // 
@@ -103,7 +103,7 @@
             this.consutaSql.HorizontalScrollbarSize = 10;
             this.consutaSql.Location = new System.Drawing.Point(4, 38);
             this.consutaSql.Name = "consutaSql";
-            this.consutaSql.Size = new System.Drawing.Size(1218, 574);
+            this.consutaSql.Size = new System.Drawing.Size(1187, 394);
             this.consutaSql.TabIndex = 0;
             this.consutaSql.Text = "Consulta SQL";
             this.consutaSql.VerticalScrollbarBarColor = true;
@@ -113,10 +113,10 @@
             // 
             // txaConsultaSql
             // 
-            this.txaConsultaSql.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txaConsultaSql.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.txaConsultaSql.Location = new System.Drawing.Point(0, 3);
             this.txaConsultaSql.Name = "txaConsultaSql";
-            this.txaConsultaSql.Size = new System.Drawing.Size(1215, 568);
+            this.txaConsultaSql.Size = new System.Drawing.Size(1192, 388);
             this.txaConsultaSql.TabIndex = 2;
             this.txaConsultaSql.Text = "";
             this.txaConsultaSql.TextChanged += new System.EventHandler(this.txaConsultaSql_TextChanged);
@@ -129,7 +129,7 @@
             this.classeVO.HorizontalScrollbarSize = 10;
             this.classeVO.Location = new System.Drawing.Point(4, 38);
             this.classeVO.Name = "classeVO";
-            this.classeVO.Size = new System.Drawing.Size(1218, 574);
+            this.classeVO.Size = new System.Drawing.Size(1187, 394);
             this.classeVO.TabIndex = 1;
             this.classeVO.Text = "Classe VO";
             this.classeVO.VerticalScrollbarBarColor = true;
@@ -142,7 +142,7 @@
             this.txaClasseVo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txaClasseVo.Location = new System.Drawing.Point(2, 3);
             this.txaClasseVo.Name = "txaClasseVo";
-            this.txaClasseVo.Size = new System.Drawing.Size(1215, 568);
+            this.txaClasseVo.Size = new System.Drawing.Size(1190, 388);
             this.txaClasseVo.TabIndex = 3;
             this.txaClasseVo.Text = "";
             // 
@@ -154,7 +154,7 @@
             this.classeBE.HorizontalScrollbarSize = 10;
             this.classeBE.Location = new System.Drawing.Point(4, 38);
             this.classeBE.Name = "classeBE";
-            this.classeBE.Size = new System.Drawing.Size(1218, 574);
+            this.classeBE.Size = new System.Drawing.Size(1187, 394);
             this.classeBE.TabIndex = 2;
             this.classeBE.Text = "Classe BL";
             this.classeBE.VerticalScrollbarBarColor = true;
@@ -163,9 +163,10 @@
             // 
             // txaClasseBe
             // 
+            this.txaClasseBe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.txaClasseBe.Location = new System.Drawing.Point(0, 3);
             this.txaClasseBe.Name = "txaClasseBe";
-            this.txaClasseBe.Size = new System.Drawing.Size(1217, 568);
+            this.txaClasseBe.Size = new System.Drawing.Size(1190, 388);
             this.txaClasseBe.TabIndex = 3;
             this.txaClasseBe.Text = "";
             // 
@@ -177,7 +178,7 @@
             this.classeDAO.HorizontalScrollbarSize = 10;
             this.classeDAO.Location = new System.Drawing.Point(4, 38);
             this.classeDAO.Name = "classeDAO";
-            this.classeDAO.Size = new System.Drawing.Size(1218, 574);
+            this.classeDAO.Size = new System.Drawing.Size(1187, 394);
             this.classeDAO.TabIndex = 3;
             this.classeDAO.Text = "Classe DAO";
             this.classeDAO.VerticalScrollbarBarColor = true;
@@ -186,9 +187,10 @@
             // 
             // txaClasseDao
             // 
+            this.txaClasseDao.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.txaClasseDao.Location = new System.Drawing.Point(2, 3);
             this.txaClasseDao.Name = "txaClasseDao";
-            this.txaClasseDao.Size = new System.Drawing.Size(1215, 568);
+            this.txaClasseDao.Size = new System.Drawing.Size(1190, 388);
             this.txaClasseDao.TabIndex = 3;
             this.txaClasseDao.Text = "";
             // 
@@ -362,7 +364,7 @@
             // txtPasta
             // 
             this.txtPasta.Lines = new string[] {
-        "C:\\Users\\Michael\\OneDrive\\Documentos\\Classes"};
+        "C:\\Users\\michael.lopes\\Documents\\Classes_PHP"};
             this.txtPasta.Location = new System.Drawing.Point(13, 167);
             this.txtPasta.MaxLength = 32767;
             this.txtPasta.Name = "txtPasta";
@@ -371,7 +373,7 @@
             this.txtPasta.SelectedText = "";
             this.txtPasta.Size = new System.Drawing.Size(248, 29);
             this.txtPasta.TabIndex = 17;
-            this.txtPasta.Text = "C:\\Users\\Michael\\OneDrive\\Documentos\\Classes";
+            this.txtPasta.Text = "C:\\Users\\michael.lopes\\Documents\\Classes_PHP";
             this.txtPasta.UseSelectable = true;
             // 
             // metroButton1
@@ -446,7 +448,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1237, 780);
+            this.ClientSize = new System.Drawing.Size(1238, 656);
             this.Controls.Add(this.metroLabel10);
             this.Controls.Add(this.txtHerancaDao);
             this.Controls.Add(this.metroLabel9);
@@ -473,7 +475,6 @@
             this.Controls.Add(this.txtHost);
             this.Name = "Principal";
             this.Text = "Principal";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.tabPrincipal.ResumeLayout(false);
             this.consutaSql.ResumeLayout(false);
             this.classeVO.ResumeLayout(false);

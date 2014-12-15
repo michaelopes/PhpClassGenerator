@@ -19,3 +19,14 @@ D:\Projetos\PhpClassGenerator\PhpClassGenerator\obj\Debug\PhpClassGenerator.cspr
 D:\Projetos\PhpClassGenerator\PhpClassGenerator\obj\Debug\PhpClassGenerator.Principal.resources
 D:\Projetos\PhpClassGenerator\PhpClassGenerator\obj\Debug\PhpClassGenerator.Properties.Resources.resources
 D:\Projetos\PhpClassGenerator\PhpClassGenerator\obj\Debug\PhpClassGenerator.csproj.GenerateResource.Cache
+C:\Users\michael.lopes\Documents\Pessoal\C#\PhpClassGenerator\PhpClassGenerator\bin\Debug\PhpClassGenerator.exe.config
+C:\Users\michael.lopes\Documents\Pessoal\C#\PhpClassGenerator\PhpClassGenerator\obj\Debug\PhpClassGenerator.exe
+C:\Users\michael.lopes\Documents\Pessoal\C#\PhpClassGenerator\PhpClassGenerator\obj\Debug\PhpClassGenerator.pdb
+C:\Users\michael.lopes\Documents\Pessoal\C#\PhpClassGenerator\PhpClassGenerator\bin\Debug\PhpClassGenerator.exe
+C:\Users\michael.lopes\Documents\Pessoal\C#\PhpClassGenerator\PhpClassGenerator\bin\Debug\PhpClassGenerator.pdb
+C:\Users\michael.lopes\Documents\Pessoal\C#\PhpClassGenerator\PhpClassGenerator\bin\Debug\MetroFramework.dll
+C:\Users\michael.lopes\Documents\Pessoal\C#\PhpClassGenerator\PhpClassGenerator\bin\Debug\MetroFramework.pdb
+C:\Users\michael.lopes\Documents\Pessoal\C#\PhpClassGenerator\PhpClassGenerator\obj\Debug\PhpClassGenerator.csprojResolveAssemblyReference.cache
+C:\Users\michael.lopes\Documents\Pessoal\C#\PhpClassGenerator\PhpClassGenerator\obj\Debug\PhpClassGenerator.Principal.resources
+C:\Users\michael.lopes\Documents\Pessoal\C#\PhpClassGenerator\PhpClassGenerator\obj\Debug\PhpClassGenerator.Properties.Resources.resources
+C:\Users\michael.lopes\Documents\Pessoal\C#\PhpClassGenerator\PhpClassGenerator\obj\Debug\PhpClassGenerator.csproj.GenerateResource.Cache
