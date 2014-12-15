@@ -100,17 +100,17 @@ namespace PhpClassGenerator
 
                 if (!String.IsNullOrEmpty(campo) && campo.Length > 2 && campo.ToLower().IndexOf("_id") >= 0 || !String.IsNullOrEmpty(campo) && campo.Length > 2 && campo.ToLower().IndexOf("id") >= 0)
                 {
-                    sp.AppendLine("        public $" + campo.Replace("_id", "").Replace("id", "").Replace("_Id", "").Replace("_Id", ""));
+                    sp.AppendLine("        public $" + campo.Replace("_id", "").Replace("id", "").Replace("_Id", "").Replace("_Id", "") + ";");
                 }
                 else if (!String.IsNullOrEmpty(campo))
                 {
-                    sp.AppendLine("        public $" + campo);
+                    sp.AppendLine("        public $" + campo + ";");
                 }
             }
-            sp.AppendLine();
-            sp.AppendLine("        public function __construct($arrAttr = array()) {");
-            sp.AppendLine("           parent::__construct($arrAttr);");
-            sp.AppendLine("        }");
+            // sp.AppendLine();
+            //sp.AppendLine("        public function __construct($arrAttr = array()) {");
+            //sp.AppendLine("           parent::__construct($arrAttr);");
+            //sp.AppendLine("        }");
             sp.AppendLine();
             sp.AppendLine("}");
             sp.AppendLine();
@@ -141,6 +141,7 @@ namespace PhpClassGenerator
             {
                 gerarVo();
                 gerarDAO();
+                gerarBL();
             }
             else
             {
@@ -255,7 +256,7 @@ namespace PhpClassGenerator
             {
                 if (!String.IsNullOrEmpty(Campos[i]) && Campos[i].Length > 2 && Campos[i].ToLower().IndexOf("_id") >= 0 || !String.IsNullOrEmpty(Campos[i]) && Campos[i].Length > 2 && Campos[i].ToLower().IndexOf("id") >= 0)
                 {
-                    sp.Append(' ', 30).AppendLine("parent::get_database()->bind(':" + Campos[i] + "', $objVO->" + Campos[i].Replace("_id", "").Replace("id", "").Replace("_Id", "").Replace("_Id", "") + ".Id, " + getDataType(TypeField[i]) + ");");
+                    sp.Append(' ', 30).AppendLine("parent::get_database()->bind(':" + Campos[i] + "', $objVO->" + Campos[i].Replace("_id", "").Replace("id", "").Replace("_Id", "").Replace("_Id", "") + "->Id, " + getDataType(TypeField[i]) + ");");
                 }
                 else if (!String.IsNullOrEmpty(Campos[i]))
                 {
@@ -303,14 +304,24 @@ namespace PhpClassGenerator
             sp.AppendLine();
             sp.Append(' ', 20).AppendLine("$query =  \" UPDATE " + tabela);
             sp.Append(' ', 45).AppendLine("SET");
+            string where = "";
             foreach (string campo in Campos)
             {
-                if (count == 0)
+                if (count == 0 && !campo.ToLower().Equals("id"))
+                {
                     sp.Append(' ', 57).Append(campo).AppendLine(" = :" + campo);
-                else
+                    count++;
+                }
+                else if (!campo.ToLower().Equals("id"))
+                {
                     sp.Append(' ', 55).Append(", " + campo).AppendLine(" = :" + campo);
-                count++;
+                    count++;
+                }
+                else if (campo.ToLower().Equals("id"))
+                    where = "WHERE " + campo + " = :" + campo;
+
             }
+            sp.Append(' ', 36).AppendLine(where);
             sp.Append(' ', 36).AppendLine("\";");
             sp.AppendLine();
             sp.AppendLine();
@@ -328,7 +339,7 @@ namespace PhpClassGenerator
             {
                 if (!String.IsNullOrEmpty(Campos[i]) && Campos[i].Length > 2 && Campos[i].ToLower().IndexOf("_id") >= 0 || !String.IsNullOrEmpty(Campos[i]) && Campos[i].Length > 2 && Campos[i].ToLower().IndexOf("id") >= 0)
                 {
-                    sp.Append(' ', 30).AppendLine("parent::get_database()->bind(':" + Campos[i] + "', $objVO->" + Campos[i].Replace("_id", "").Replace("id", "").Replace("_Id", "").Replace("_Id", "") + ".Id, " + getDataType(TypeField[i]) + ");");
+                    sp.Append(' ', 30).AppendLine("parent::get_database()->bind(':" + Campos[i] + "', $objVO->" + Campos[i].Replace("_id", "").Replace("id", "").Replace("_Id", "").Replace("_Id", "") + "->Id, " + getDataType(TypeField[i]) + ");");
                 }
                 else if (!String.IsNullOrEmpty(Campos[i]))
                 {
@@ -382,7 +393,7 @@ namespace PhpClassGenerator
                 if (!String.IsNullOrEmpty(Campos[i]) && Campos[i].Length > 2 && Campos[i].ToLower().IndexOf("_id") >= 0 || !String.IsNullOrEmpty(Campos[i]) && Campos[i].Length > 2 && Campos[i].ToLower().IndexOf("id") >= 0)
                 {
                     string field = Campos[i].Replace("_id", "").Replace("id", "").Replace("_Id", "").Replace("_Id", "");
-                    sp.Append(' ', 30).AppendLine("if (is_object($objVO->" + field + ") && $objVO->" + field + ".Id > 0) {");
+                    sp.Append(' ', 30).AppendLine("if (is_object($objVO->" + field + ") && $objVO->" + field + "->Id > 0) {");
                     sp.Append(' ', 40).AppendLine("$query .= \" AND " + Campos[i] + " = : " + Campos[i] + "\";");
                     sp.Append(' ', 30).AppendLine("}");
                 }
@@ -414,8 +425,8 @@ namespace PhpClassGenerator
                 if (!String.IsNullOrEmpty(Campos[i]) && Campos[i].Length > 2 && Campos[i].ToLower().IndexOf("_id") >= 0 || !String.IsNullOrEmpty(Campos[i]) && Campos[i].Length > 2 && Campos[i].ToLower().IndexOf("id") >= 0)
                 {
                     string field = Campos[i].Replace("_id", "").Replace("id", "").Replace("_Id", "").Replace("_Id", "");
-                    sp.Append(' ', 30).AppendLine("if (is_object($objVO->" + field + ") && $objVO->" + field + ".Id > 0) {");
-                    sp.Append(' ', 40).AppendLine("parent::get_database()->bind(':" + Campos[i] + "', $objVO->" + Campos[i].Replace("_id", "").Replace("id", "").Replace("_Id", "").Replace("_Id", "") + ".Id, " + getDataType(TypeField[i]) + ");");
+                    sp.Append(' ', 30).AppendLine("if (is_object($objVO->" + field + ") && $objVO->" + field + "->Id > 0) {");
+                    sp.Append(' ', 40).AppendLine("parent::get_database()->bind(':" + Campos[i] + "', $objVO->" + Campos[i].Replace("_id", "").Replace("id", "").Replace("_Id", "").Replace("_Id", "") + "->Id, " + getDataType(TypeField[i]) + ");");
                     sp.Append(' ', 30).AppendLine("}");
                 }
                 else if (!String.IsNullOrEmpty(Campos[i]))
@@ -439,7 +450,6 @@ namespace PhpClassGenerator
             sp.Append(' ', 20).AppendLine("$dataObject = null;");
             sp.AppendLine();
             sp.AppendLine();
-
             sp.Append(' ', 20).AppendLine("if(count($resultSet) == 1) {");
             sp.AppendLine();
             sp.Append(' ', 30).AppendLine("$objectVO = new " + txtClasse.Text + "VO");
@@ -448,11 +458,11 @@ namespace PhpClassGenerator
             {
                 if (!String.IsNullOrEmpty(campo) && campo.Length > 2 && campo.ToLower().IndexOf("_id") >= 0 || !String.IsNullOrEmpty(campo) && campo.Length > 2 && campo.ToLower().IndexOf("id") >= 0)
                 {
-                    sp.Append(' ', 30).AppendLine("$objectVO->" + campo.Replace("_id", "").Replace("id", "").Replace("_Id", "").Replace("_Id", "") + ".Id = $resultSet[0]['" + campo + "']");
+                    sp.Append(' ', 30).AppendLine("$objectVO->" + campo.Replace("_id", "").Replace("id", "").Replace("_Id", "").Replace("_Id", "") + "->Id = $resultSet[0]['" + campo + "'];");
                 }
                 else if (!String.IsNullOrEmpty(campo))
                 {
-                    sp.Append(' ', 30).AppendLine("$objectVO->" + campo + " = $resultSet[0]['" + campo + "']");
+                    sp.Append(' ', 30).AppendLine("$objectVO->" + campo + " = $resultSet[0]['" + campo + "'];");
                 }
             }
 
@@ -476,7 +486,7 @@ namespace PhpClassGenerator
             var sp = new StringBuilder();
             var tabela = cmbTabela.SelectedItem.ToString();
 
-            sp.AppendLine("    public function readAll(ValueObject $objVO) {");
+            sp.AppendLine("    public function listAll(ValueObject $objVO = null) {");
             sp.AppendLine();
             sp.Append(' ', 10).AppendLine("try{");
             sp.AppendLine();
@@ -490,7 +500,7 @@ namespace PhpClassGenerator
                 if (!String.IsNullOrEmpty(Campos[i]) && Campos[i].Length > 2 && Campos[i].ToLower().IndexOf("_id") >= 0 || !String.IsNullOrEmpty(Campos[i]) && Campos[i].Length > 2 && Campos[i].ToLower().IndexOf("id") >= 0)
                 {
                     string field = Campos[i].Replace("_id", "").Replace("id", "").Replace("_Id", "").Replace("_Id", "");
-                    sp.Append(' ', 30).AppendLine("if (is_object($objVO->" + field + ") && $objVO->" + field + ".Id > 0) {");
+                    sp.Append(' ', 30).AppendLine("if (is_object($objVO->" + field + ") && $objVO->" + field + "->Id > 0) {");
                     sp.Append(' ', 40).AppendLine("$query .= \" AND " + Campos[i] + " = : " + Campos[i] + "\";");
                     sp.Append(' ', 30).AppendLine("}");
                 }
@@ -522,8 +532,8 @@ namespace PhpClassGenerator
                 if (!String.IsNullOrEmpty(Campos[i]) && Campos[i].Length > 2 && Campos[i].ToLower().IndexOf("_id") >= 0 || !String.IsNullOrEmpty(Campos[i]) && Campos[i].Length > 2 && Campos[i].ToLower().IndexOf("id") >= 0)
                 {
                     string field = Campos[i].Replace("_id", "").Replace("id", "").Replace("_Id", "").Replace("_Id", "");
-                    sp.Append(' ', 30).AppendLine("if (is_object($objVO->" + field + ") && $objVO->" + field + ".Id > 0) {");
-                    sp.Append(' ', 40).AppendLine("parent::get_database()->bind(':" + Campos[i] + "', $objVO->" + Campos[i].Replace("_id", "").Replace("id", "").Replace("_Id", "").Replace("_Id", "") + ".Id, " + getDataType(TypeField[i]) + ");");
+                    sp.Append(' ', 30).AppendLine("if (is_object($objVO->" + field + ") && $objVO->" + field + "->Id > 0) {");
+                    sp.Append(' ', 40).AppendLine("parent::get_database()->bind(':" + Campos[i] + "', $objVO->" + Campos[i].Replace("_id", "").Replace("id", "").Replace("_Id", "").Replace("_Id", "") + "->Id, " + getDataType(TypeField[i]) + ");");
                     sp.Append(' ', 30).AppendLine("}");
                 }
                 else if (!String.IsNullOrEmpty(Campos[i]))
@@ -559,11 +569,11 @@ namespace PhpClassGenerator
             {
                 if (!String.IsNullOrEmpty(campo) && campo.Length > 2 && campo.ToLower().IndexOf("_id") >= 0 || !String.IsNullOrEmpty(campo) && campo.Length > 2 && campo.ToLower().IndexOf("id") >= 0)
                 {
-                    sp.Append(' ', 40).AppendLine("$objectVO->" + campo.Replace("_id", "").Replace("id", "").Replace("_Id", "").Replace("_Id", "") + ".Id = $result['" + campo + "']");
+                    sp.Append(' ', 40).AppendLine("$objectVO->" + campo.Replace("_id", "").Replace("id", "").Replace("_Id", "").Replace("_Id", "") + "->Id = $result['" + campo + "'];");
                 }
                 else if (!String.IsNullOrEmpty(campo))
                 {
-                    sp.Append(' ', 40).AppendLine("$objectVO->" + campo + " = $result['" + campo + "']");
+                    sp.Append(' ', 40).AppendLine("$objectVO->" + campo + " = $result['" + campo + "'];");
                 }
 
             }
@@ -662,6 +672,181 @@ namespace PhpClassGenerator
         {
             var tabela = cmbTabela.SelectedItem.ToString();
             txtClasse.Text = tabela.Substring(0, 1).ToUpper() + tabela.Substring(1, tabela.Length - 1);
+        }
+        public void gerarBL()
+        {
+            var sp = new StringBuilder();
+
+            sp.AppendLine("<?php");
+            sp.AppendLine();
+            sp.AppendLine();
+            sp.AppendLine("class " + txtClasse.Text + "BL extends " + txtHerancaBl.Text + " { ");
+            sp.AppendLine();
+            sp.AppendLine();
+            sp.AppendLine();
+            sp.AppendLine("      private $" + txtClasse.Text + "DAO;");
+            sp.AppendLine();
+            sp.AppendLine();
+            sp.AppendLine();
+            sp.AppendLine("      public function __construct(Database $database = null) {                                            ");
+            sp.AppendLine("       	    try{                                                                                         ");
+            sp.AppendLine("       	    	parent::__construct($database);                                                          ");
+            sp.AppendLine("       	    	$this->" + txtClasse.Text + "DAO = new " + txtClasse.Text + "DAO($this->Database);     ");
+            sp.AppendLine("       	    }catch(Exception $ex){                                                                       ");
+            sp.AppendLine("       	    	throw $ex;                                                                               ");
+            sp.AppendLine("       	    }                                                                                            ");
+            sp.AppendLine("      }                                                                                                   ");
+            sp.AppendLine();
+            sp.AppendLine();
+            sp.AppendLine();
+            sp.AppendLine();
+            sp.AppendLine(gerarBLCreate());
+
+            sp.AppendLine();
+            sp.AppendLine();
+            sp.AppendLine();
+            sp.AppendLine();
+            sp.AppendLine(gerarBLUpdate());
+
+            sp.AppendLine();
+            sp.AppendLine();
+            sp.AppendLine();
+            sp.AppendLine();
+            sp.AppendLine(gerarBLDelete());
+
+            sp.AppendLine();
+            sp.AppendLine();
+            sp.AppendLine();
+            sp.AppendLine();
+            sp.AppendLine(gerarBLRead());
+
+            sp.AppendLine();
+            sp.AppendLine();
+            sp.AppendLine();
+            sp.AppendLine();
+            sp.AppendLine(gerarBLReadAll());
+            sp.AppendLine("}");
+
+            txaClasseBe.Text = sp.ToString();
+            criarAquivo(sp.ToString(), txtClasse.Text + "BL", "bl");
+        }
+
+        private string gerarBLRead()
+        {
+            var sp = new StringBuilder();
+            var tabela = cmbTabela.SelectedItem.ToString();
+            sp.AppendLine("    public function read(ValueObject $objVO) {");
+            sp.AppendLine();
+            sp.Append(' ', 20).AppendLine("try{");
+            sp.AppendLine();
+            sp.Append(' ', 30).AppendLine("return $this->" + txtClasse.Text + "DAO->read($objVO);");
+            sp.AppendLine();
+            sp.Append(' ', 20).AppendLine("} catch(Exception $ex) {");
+            sp.Append(' ', 30).AppendLine("throw $ex;");
+            sp.Append(' ', 20).AppendLine("}");
+            sp.AppendLine();
+            sp.Append(' ', 10).AppendLine("}");
+
+            return sp.ToString();
+        }
+
+        private string gerarBLReadAll()
+        {
+            var sp = new StringBuilder();
+            var tabela = cmbTabela.SelectedItem.ToString();
+            sp.AppendLine("    public function listAll(ValueObject $objVO = null) {");
+            sp.AppendLine();
+            sp.Append(' ', 20).AppendLine("try{");
+            sp.AppendLine();
+            sp.Append(' ', 30).AppendLine("return $this->" + txtClasse.Text + "DAO->readAll($objVO);");
+            sp.AppendLine();
+            sp.Append(' ', 20).AppendLine("} catch(Exception $ex) {");
+            sp.Append(' ', 30).AppendLine("throw $ex;");
+            sp.Append(' ', 20).AppendLine("}");
+            sp.AppendLine();
+            sp.Append(' ', 10).AppendLine("}");
+
+            return sp.ToString();
+        }
+
+
+        private string gerarBLCreate()
+        {
+            var sp = new StringBuilder();
+            var tabela = cmbTabela.SelectedItem.ToString();
+            sp.AppendLine("    public function create(ValueObject $objVO) {");
+            sp.AppendLine();
+            sp.Append(' ', 20).AppendLine("try{");
+            sp.AppendLine();
+            sp.Append(' ', 30).AppendLine("$this->" + txtClasse.Text + "DAO->get_database()->begin_transaction();");
+            sp.AppendLine();
+            sp.Append(' ', 30).AppendLine("$" + txtClasse.Text + "VO = $this->" + txtClasse.Text + "DAO->create($objVO);");
+            sp.AppendLine();
+            sp.Append(' ', 30).AppendLine("$this->" + txtClasse.Text + "DAO->get_database()->commit();");
+            sp.AppendLine();
+            sp.Append(' ', 30).AppendLine("return $" + txtClasse.Text + "VO;");
+            sp.AppendLine();
+            sp.Append(' ', 20).AppendLine("} catch(Exception $ex) {");
+            sp.Append(' ', 30).AppendLine("$this->" + txtClasse.Text + "DAO->get_database()->rollback();");
+            sp.Append(' ', 30).AppendLine("throw $ex;");
+            sp.Append(' ', 20).AppendLine("}");
+            sp.AppendLine();
+            sp.Append(' ', 10).AppendLine("}");
+
+            return sp.ToString();
+        }
+
+
+        private string gerarBLUpdate()
+        {
+            var sp = new StringBuilder();
+            var tabela = cmbTabela.SelectedItem.ToString();
+            sp.AppendLine("    public function update(ValueObject $objVO) {");
+            sp.AppendLine();
+            sp.Append(' ', 20).AppendLine("try{");
+            sp.AppendLine();
+            sp.Append(' ', 30).AppendLine("$this->" + txtClasse.Text + "DAO->get_database()->begin_transaction();");
+            sp.AppendLine();
+            sp.Append(' ', 30).AppendLine("$status = $this->" + txtClasse.Text + "DAO->update($objVO);");
+            sp.AppendLine();
+            sp.Append(' ', 30).AppendLine("$this->" + txtClasse.Text + "DAO->get_database()->commit();");
+            sp.AppendLine();
+            sp.Append(' ', 30).AppendLine("return $status;");
+            sp.AppendLine();
+            sp.Append(' ', 20).AppendLine("} catch(Exception $ex) {");
+            sp.Append(' ', 30).AppendLine("$this->" + txtClasse.Text + "DAO->get_database()->rollback();");
+            sp.Append(' ', 30).AppendLine("throw $ex;");
+            sp.Append(' ', 20).AppendLine("}");
+            sp.AppendLine();
+            sp.Append(' ', 10).AppendLine("}");
+
+            return sp.ToString();
+        }
+
+        private string gerarBLDelete()
+        {
+            var sp = new StringBuilder();
+            var tabela = cmbTabela.SelectedItem.ToString();
+            sp.AppendLine("    public function delete(ValueObject $objVO) {");
+            sp.AppendLine();
+            sp.Append(' ', 20).AppendLine("try{");
+            sp.AppendLine();
+            sp.Append(' ', 30).AppendLine("$this->" + txtClasse.Text + "DAO->get_database()->begin_transaction();");
+            sp.AppendLine();
+            sp.Append(' ', 30).AppendLine("$status = $this->" + txtClasse.Text + "DAO->delete($objVO);");
+            sp.AppendLine();
+            sp.Append(' ', 30).AppendLine("$this->" + txtClasse.Text + "DAO->get_database()->commit();");
+            sp.AppendLine();
+            sp.Append(' ', 30).AppendLine("return $status;");
+            sp.AppendLine();
+            sp.Append(' ', 20).AppendLine("} catch(Exception $ex) {");
+            sp.Append(' ', 30).AppendLine("$this->" + txtClasse.Text + "DAO->get_database()->rollback();");
+            sp.Append(' ', 30).AppendLine("throw $ex;");
+            sp.Append(' ', 20).AppendLine("}");
+            sp.AppendLine();
+            sp.Append(' ', 10).AppendLine("}");
+
+            return sp.ToString();
         }
     }
 }
